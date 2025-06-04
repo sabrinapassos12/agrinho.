@@ -124,8 +124,31 @@
   }
 </style>
 
+<style>
+  .confete {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    z-index: 9999;
+    opacity: 0.9;
+    animation: explodirConfete 2.5s ease-out forwards;
+  }
+
+  @keyframes explodirConfete {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
 <script>
-  function estourarConfetes(lado = "esquerda") {
+  function estourarConfetesLateral(lado = "esquerda") {
     const cores = ["#ff0000", "#00cc00", "#0000ff", "#ffcc00", "#ff00cc", "#00ffff"];
 
     for (let i = 0; i < 25; i++) {
@@ -133,32 +156,33 @@
       confete.classList.add("confete");
       confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
 
-      // Posição inicial
+      // Começa na metade da altura
       confete.style.top = "50%";
-      confete.style.left = lado === "esquerda" ? "5%" : "95%";
+      // Começa na esquerda ou direita
+      confete.style.left = lado === "esquerda" ? "0%" : "100%";
 
-      // Direção aleatória para cair
-      const dirX = (Math.random() * 100 - 50) + "px";
-      const dirY = (Math.random() * 400 + 100) + "px";
+      // Define a direção dos confetes (para o centro)
+      const dirX = lado === "esquerda"
+        ? (Math.random() * 300 + 200) + "px"  // Vai para a direita
+        : -(Math.random() * 300 + 200) + "px"; // Vai para a esquerda
+      const dirY = (Math.random() * 400 - 200) + "px"; // Um pouco pra cima ou pra baixo
       confete.style.setProperty("--x", dirX);
       confete.style.setProperty("--y", dirY);
 
-      // Tamanhos variados
+      // Tamanho variado
       const size = Math.random() * 6 + 4;
       confete.style.width = size + "px";
       confete.style.height = size + "px";
 
       document.body.appendChild(confete);
-
-      // Remove depois da animação
       setTimeout(() => confete.remove(), 3000);
     }
   }
 
-  // Ativa os confetes quando o site carregar
+  // Dispara confetes dos dois lados ao carregar a página
   window.addEventListener("load", () => {
-    estourarConfetes("esquerda");
-    estourarConfetes("direita");
+    estourarConfetesLateral("esquerda");
+    estourarConfetesLateral("direita");
   });
 </script>
 
