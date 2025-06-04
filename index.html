@@ -20,6 +20,86 @@
     </style>
   </head>
   <body class="bg-green-50 text-gray-800 font-sans">
+
+    <!-- 🎈 Balões de Aniversário + Mensagem de 30 anos -->
+<style>
+  .balao {
+    position: fixed;
+    bottom: -100px;
+    width: 40px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.8;
+    z-index: 9999;
+    animation: subir 5s linear forwards;
+  }
+
+  @keyframes subir {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150vh);
+      opacity: 0;
+    }
+  }
+
+  #mensagem-aniversario {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #1f2937; /* Gray-800 */
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    animation: fadeOut 1s ease-in-out forwards;
+    animation-delay: 5s;
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }
+</style>
+
+<div id="mensagem-aniversario">🎉 Agrinho: 30 anos conectando o campo e a cidade!</div>
+
+<script>
+  const cores = ["#FF5E5E", "#FFB347", "#FFD700", "#77DD77", "#AEC6CF", "#CBAACB", "#FF69B4", "#87CEFA"];
+
+  function soltarBaloes() {
+    for (let i = 0; i < 20; i++) {
+      const balao = document.createElement("div");
+      balao.classList.add("balao");
+      balao.style.left = Math.random() * 100 + "vw";
+      balao.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+      balao.style.animationDelay = (Math.random() * 2) + "s";
+      document.body.appendChild(balao);
+
+      setTimeout(() => {
+        balao.remove();
+      }, 6000);
+    }
+
+    // Remover mensagem após 6 segundos
+    setTimeout(() => {
+      const msg = document.getElementById("mensagem-aniversario");
+      if (msg) msg.remove();
+    }, 6000);
+  }
+
+  window.addEventListener("load", soltarBaloes);
+</script>
+
    
     <!-- Cabeçalho com logo e trator animado -->
 <header class="bg-green-700 text-white p-6 shadow-lg sticky top-0 z-50">
