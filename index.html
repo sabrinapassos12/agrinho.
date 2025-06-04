@@ -101,6 +101,68 @@
   window.addEventListener("load", soltarBaloes);
 </script>
 
+<style>
+  .confete {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    z-index: 9999;
+    opacity: 0.8;
+    animation: cair 2.5s ease-out forwards;
+  }
+
+  @keyframes cair {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function estourarConfetes(lado = "esquerda") {
+    const cores = ["#ff0000", "#00cc00", "#0000ff", "#ffcc00", "#ff00cc", "#00ffff"];
+
+    for (let i = 0; i < 25; i++) {
+      const confete = document.createElement("div");
+      confete.classList.add("confete");
+      confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+
+      // Posição inicial
+      confete.style.top = "50%";
+      confete.style.left = lado === "esquerda" ? "5%" : "95%";
+
+      // Direção aleatória para cair
+      const dirX = (Math.random() * 100 - 50) + "px";
+      const dirY = (Math.random() * 400 + 100) + "px";
+      confete.style.setProperty("--x", dirX);
+      confete.style.setProperty("--y", dirY);
+
+      // Tamanhos variados
+      const size = Math.random() * 6 + 4;
+      confete.style.width = size + "px";
+      confete.style.height = size + "px";
+
+      document.body.appendChild(confete);
+
+      // Remove depois da animação
+      setTimeout(() => confete.remove(), 3000);
+    }
+  }
+
+  // Ativa os confetes quando o site carregar
+  window.addEventListener("load", () => {
+    estourarConfetes("esquerda");
+    estourarConfetes("direita");
+  });
+</script>
+
+
    
     <!-- Cabeçalho com logo e trator animado -->
 <header class="bg-green-700 text-white p-6 shadow-lg sticky top-0 z-50">
