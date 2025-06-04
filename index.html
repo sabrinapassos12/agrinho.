@@ -91,12 +91,7 @@
 
     <style>
     
-    // Remover mensagem após 6 segundos
-    setTimeout(() => {
-      const msg = document.getElementById("mensagem-aniversario");
-      if (msg) msg.remove();
-    }, 6000);
-  }
+    
 
   window.addEventListener("load", soltarBaloes);
 </script>
@@ -186,8 +181,24 @@
   });
 </script>
 
+<!-- TÍTULO FIXO -->
+<h1 class="titulo-agrinho">30 anos de Agrinho</h1>
 
-   
+<style>
+  .titulo-agrinho {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3.5rem;
+    font-family: 'Arial Rounded MT Bold', 'Poppins', sans-serif;
+    color: #2ecc71; /* Verde vibrante */
+    z-index: 999;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  }
+</style>
+
     <!-- Cabeçalho com logo e trator animado -->
 <header class="bg-green-700 text-white p-6 shadow-lg sticky top-0 z-50">
   <div class="max-w-6xl mx-auto flex items-center justify-between">
