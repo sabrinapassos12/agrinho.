@@ -68,6 +68,92 @@
       </div>
     </section>
 
+    <!-- Seção: Chat com o Agrinho -->
+<section id="chat-agrinho" class="bg-white py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">🤖 Chat com o Agrinho</h2>
+    
+    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <div id="chat-box" class="space-y-4 max-h-96 overflow-y-auto mb-6">
+        <div class="text-gray-600">👋 Olá! Sou o Agrinho. Clique em uma pergunta abaixo para saber mais:</div>
+      </div>
+      
+      <div class="grid gap-3">
+        <button onclick="responder('oque')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">O que é o Agrinho?</button>
+        <button onclick="responder('objetivos')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Quais os principais objetivos do Agrinho?</button>
+        <button onclick="responder('diferenca')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Qual a diferença entre o campo e a cidade?</button>
+        <button onclick="responder('semelhancas')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Quais as semelhanças entre o campo e a cidade?</button>
+        <button onclick="responder('importancia')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Qual a importância da conexão entre o campo e a cidade?</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function responder(pergunta) {
+    const chat = document.getElementById('chat-box');
+    const perguntas = {
+      oque: "🌾 O Agrinho é um programa educativo que busca ensinar, de forma divertida, sobre a importância do campo, da sustentabilidade e da cidadania.",
+      objetivos: "🎯 Os principais objetivos do Agrinho são: promover valores, desenvolver a consciência ambiental e incentivar o respeito entre campo e cidade.",
+      diferenca: "🏙️🌿 O campo é mais ligado à natureza, agricultura e tranquilidade, enquanto a cidade tem mais tecnologia, comércio e movimento intenso.",
+      semelhancas: "🤝 Tanto o campo quanto a cidade são essenciais para a vida moderna. Ambos abrigam pessoas, culturas e precisam de respeito mútuo.",
+      importancia: "🌐 A conexão entre campo e cidade é essencial para garantir alimentos, qualidade de vida e desenvolvimento sustentável para todos."
+    };
+    
+    const userMsg = document.createElement('div');
+    userMsg.className = "text-right text-green-700 font-semibold";
+    userMsg.textContent = "Você: " + document.querySelector(`button[onclick="responder('${pergunta}')"]`).textContent;
+    
+    const botMsg = document.createElement('div');
+    botMsg.className = "text-left text-gray-700";
+    botMsg.textContent = "Agrinho: " + perguntas[pergunta];
+
+    chat.appendChild(userMsg);
+    chat.appendChild(botMsg);
+    chat.scrollTop = chat.scrollHeight;
+  }
+</script>
+
+<script>
+  function responder(pergunta) {
+    const chat = document.getElementById('chat-box');
+    const perguntas = {
+      oque: "🌾 O Agrinho é um programa educativo que busca ensinar, de forma divertida, sobre a importância do campo, da sustentabilidade e da cidadania.",
+      objetivos: "🎯 Os principais objetivos do Agrinho são: promover valores, desenvolver a consciência ambiental e incentivar o respeito entre campo e cidade.",
+      diferenca: "🏙️🌿 O campo é mais ligado à natureza, agricultura e tranquilidade, enquanto a cidade tem mais tecnologia, comércio e movimento intenso.",
+      semelhancas: "🤝 Tanto o campo quanto a cidade são essenciais para a vida moderna. Ambos abrigam pessoas, culturas e precisam de respeito mútuo.",
+      importancia: "🌐 A conexão entre campo e cidade é essencial para garantir alimentos, qualidade de vida e desenvolvimento sustentável para todos."
+    };
+
+    // Mostrar pergunta do usuário
+    const userMsg = document.createElement('div');
+    userMsg.className = "text-right text-green-700 font-semibold";
+    userMsg.textContent = "Você: " + document.querySelector(`button[onclick="responder('${pergunta}')"]`).textContent;
+    chat.appendChild(userMsg);
+
+    // Criar contêiner da resposta
+    const botMsg = document.createElement('div');
+    botMsg.className = "text-left text-gray-700";
+    botMsg.textContent = "Agrinho: ";
+    chat.appendChild(botMsg);
+
+    // Efeito de digitação
+    const texto = perguntas[pergunta];
+    let i = 0;
+
+    function digitar() {
+      if (i < texto.length) {
+        botMsg.textContent += texto.charAt(i);
+        i++;
+        setTimeout(digitar, 30); // velocidade da digitação
+      }
+    }
+
+    digitar();
+    chat.scrollTop = chat.scrollHeight;
+  }
+</script>
+
 
     <!-- Script de animação ao rolar a página -->
     <script>
