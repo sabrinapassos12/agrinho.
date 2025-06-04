@@ -22,17 +22,15 @@
   <body class="bg-green-50 text-gray-800 font-sans">
 
     <!-- 🎈 Balões de Aniversário + Mensagem de 30 anos -->
-<style>
-  .balao {
+
+    <style>
+  .balao-png {
     position: fixed;
     bottom: -100px;
-    width: 40px;
-    height: 60px;
-    background-color: red;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    opacity: 0.8;
+    width: 50px;
     z-index: 9999;
-    animation: subir 5s linear forwards;
+    animation: subir 6s linear forwards;
+    pointer-events: none;
   }
 
   @keyframes subir {
@@ -41,10 +39,35 @@
       opacity: 1;
     }
     100% {
-      transform: translateY(-150vh);
+      transform: translateY(-120vh);
       opacity: 0;
     }
   }
+</style>
+
+<script>
+  const coresHue = [0, 60, 120, 180, 240, 300]; // Tons variados: vermelho, amarelo, verde, azul, roxo etc.
+
+  function soltarBaloesPNG() {
+    for (let i = 0; i < 15; i++) {
+      const img = document.createElement("img");
+      img.src = "https://www.pngarts.com/files/4/Balloon-PNG-Image.png";
+      img.className = "balao-png";
+
+      const corAleatoria = coresHue[Math.floor(Math.random() * coresHue.length)];
+      img.style.left = Math.random() * 100 + "vw";
+      img.style.filter = `hue-rotate(${corAleatoria}deg) saturate(1.2) brightness(1.1)`;
+      img.style.animationDelay = (Math.random() * 2) + "s";
+
+      document.body.appendChild(img);
+
+      setTimeout(() => img.remove(), 7000);
+    }
+  }
+
+  window.addEventListener("load", soltarBaloesPNG);
+</script>
+
 
   #mensagem-aniversario {
     position: fixed;
