@@ -1,11 +1,6 @@
 <!-- SPLASH SCREEN -->
 <div id="splash">
-  <h1 class="splash-title">30 ANOS DE AGRINHO</h1>
-</div>
-
-<!-- SEU CONTEÚDO (sem display: none!) -->
-<div id="conteudo">
-  <!-- Todo o conteúdo real do seu site aqui -->
+  <h1 class="splash-title">Bem-vindo ao Agrinho!</h1>
 </div>
 
 <style>
@@ -32,18 +27,18 @@
 
   .splash-title {
     font-size: 3rem;
-    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-family: 'Limelight', sans-serif; /* Fonte personalizada só aqui */
+    font-weight: 600;
     color: #145A32;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   }
 </style>
 
 <script>
-  // Quando a página carregar, esconde o splash
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('splash').classList.add('esconder');
-    }, 3000); // Espera 3 segundos antes de sumir
+    }, 3000); // 3 segundos de splash
   });
 </script>
 
